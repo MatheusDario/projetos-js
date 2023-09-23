@@ -68,7 +68,7 @@ form button:active {
     background: var(--primary-color-dark);
 }
 
-div p#err {
+div p.err {
     text-align: center;
     width: 300px;
     margin: auto;
@@ -78,7 +78,7 @@ div p#err {
     box-shadow: 5px 5px 15px rgba(81, 80, 80, 0.874);
 }
 
-div p {
+div p.ok {
     text-align: center;
     width: 600px;
     margin: auto;

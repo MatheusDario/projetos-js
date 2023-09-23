@@ -1,36 +1,75 @@
 function main() {
     const form = document.querySelector('#form')
-    let resposta = document.querySelector('#res')
-    
+  
     function recebeEventoForm(evento) {
         evento.preventDefault();
         let txtPeso = document.querySelector('#txtPeso')
         let txtAltura = document.querySelector('#txtAltura')
-        let imc = Number(txtPeso.value) / (Number(txtAltura.value) * Number(txtAltura.value))
+        const peso = Number(txtPeso.value)
+        const altura = Number(txtAltura.value)
 
-        if ((txtPeso.value.length === 0 || txtAltura.value.length === 0) || (isNaN(txtPeso.value)) || (isNaN(txtAltura.value))) {
-            resposta.innerHTML = `<p id="err">Valor inserido é inválido, por favor, verifique. </p>`
-        } else {
-            
+        if (!peso) {
+            setResultado('Peso inválido', false)
+            return
+         }
+
+         if(!altura) {
+            setResultado('Altura inválida', false) 
+            return 
+        } 
+        
+        const imc = getImc(peso, altura)
+        const nivelImc = getNivelImc(imc)
+
+        const msg = `Seu IMC é ${imc} (${nivelImc}). `
+
+        setResultado(msg, true);
+
+        function getNivelImc(imc) {
+            const nivel = [
+            'Abaixo do peso', 'Peso normal', 'Sobrepeso', 'Obesidade Grau I', 
+            'Obesidade Grau II', 'Obesidade grau III']
             if (imc < 18.5) {
-                resposta.innerHTML = `<p> Seu peso é ${txtPeso.value} Kg, e seu IMC: ${imc.toFixed(2)}, você está Abaixo do Peso !!</p>`
+               return nivel[0]
             } else if (imc <= 24.9) {
-                resposta.innerHTML = `<p> Seu peso é ${txtPeso.value} Kg, e seu IMC: ${imc.toFixed(2)}, Peso normal</p>`
+                return nivel[1]
             } else if (imc <= 29.9) {
-                resposta.innerHTML = `<p> Seu peso é ${txtPeso.value} Kg, e seu IMC: ${imc.toFixed(2)}, Sobrepeso</p>`
+                return nivel[2]
             } else if (imc <= 34.9) {
-                resposta.innerHTML = `<p> Seu peso é ${txtPeso.value} Kg, e seu IMC: ${imc.toFixed(2)}, Obesidade grau I !!</p>`
-            } else if (imc <= 39.9) {
-                resposta.innerHTML = `<p> Seu peso é ${txtPeso.value} Kg, e seu IMC: ${imc.toFixed(2)}, Obesidade grau II !!</p>`
-            }  else {
-                resposta.innerHTML = `<p> Seu peso é ${txtPeso.value} Kg, e seu IMC: ${imc.toFixed(2)}, Obesidade grau III !!</p>`
-            }
+                return nivel[3]
+            }  else if(imc <= 39.9) {
+                return nivel[4]
+            } else {
+                return nivel[5]
+            }     
+        }
+        
+        function getImc(peso, altura) {
+            let imc = peso / (altura * altura)
+            return imc.toFixed(2)
         }
 
-        txtPeso.value = ''
-        txtAltura.value = ''
+        function criaP() {
+            const p = document.createElement('p')
+            return p
+        }
+
+        function setResultado (msg, isValid) {
+            const resultado = document.querySelector('#res');
+            resultado.innerHTML = '';
+          
+            const p = criaP();
+          
+            if (isValid) {
+              p.classList.add('ok');
+            } else {
+              p.classList.add('err');
+            }
+          
+            p.innerHTML = msg;
+            resultado.appendChild(p);
+          }
     }
     form.addEventListener('submit', recebeEventoForm)
-    resposta.innerHTML = ''
 }
 main()
