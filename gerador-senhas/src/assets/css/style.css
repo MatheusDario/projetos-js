@@ -1,0 +1,65 @@
+:root {
+    --primary-color: rgb(66, 103, 248);
+    --primary-color-darker: rgb(34, 57, 148);
+    --primary-color-dark: rgb(19, 33, 88);
+}
+
+* {
+    box-sizing: border-box;
+    outline: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--primary-color);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    line-height: 1.2em;
+}
+
+.container {
+    max-width: 640px;
+    margin: 50px auto;
+    background: rgb(58, 57, 57);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgb(195, 188, 188);
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    font-size: 18px;
+    font-weight: 700px;
+    height: 50px;
+    cursor: pointer;
+    margin: 30px 0;
+    
+}
+
+button:hover {
+    background: var(--primary-color-darker);
+}
+
+button:active {
+    background: var(--primary-color-dark);
+}
+
+.senha-gerada {
+    font-size: 2em;
+    margin: 40px 0;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+}

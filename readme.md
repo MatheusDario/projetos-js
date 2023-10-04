@@ -2,4 +2,4 @@
 
 ### Projeto descubra sua idade https://matheusdario.github.io/projetos-js/descubraSuaIdade/
 
-### Projeto IMC https://matheusdario.github.io/projetos-js/imc/
+### Projeto IMC https://matheusdario.github.io/projetos-js/imc/v
